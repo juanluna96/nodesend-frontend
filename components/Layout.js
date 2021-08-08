@@ -1,5 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
+import Header from './Header';
 
 const Layout = ({ children }) => {
     return (
@@ -10,13 +11,10 @@ const Layout = ({ children }) => {
                 <link rel="icon" href="/favicon.ico" />
                 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
             </Head>
-            {
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src="logo.svg" alt="nodesend" />
-            }
             <div className="bg-gray-100 min-h-screen">
                 <div className="container mx-auto">
-                    <div className="pt-20">
+                    <Header />
+                    <div className="mt-20">
                         { children }
                     </div>
                 </div>
