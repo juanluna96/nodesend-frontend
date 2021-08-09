@@ -8,8 +8,10 @@ const Header = () => {
 
     return (
         <header className="py-0 flex flex-col md:flex-row items-center justify-between">
-            <Link href="/" passHref >
-                <Image className="cursor-pointer" src="/logo.svg" width={ width } height={ height } alt="logo" />
+            <Link href="/"  >
+                <a className="cursor-pointer">
+                    <Image src="/logo.svg" width={ width } height={ height } alt="logo" />
+                </a>
             </Link>
             <div>
                 <Link href="/login">
