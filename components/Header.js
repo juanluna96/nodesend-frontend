@@ -7,7 +7,7 @@ const Header = () => {
     const height = width * 9 / 16;
 
     return (
-        <header className="py-0 flex flex-col md:flex-row items-center justify-between">
+        <header className="flex flex-col items-center justify-between py-0 md:flex-row">
             <Link href="/"  >
                 <a className="cursor-pointer">
                     <Image src="/logo.svg" width={ width } height={ height } alt="logo" />
@@ -15,10 +15,10 @@ const Header = () => {
             </Link>
             <div>
                 <Link href="/login">
-                    <a className="text-sm bg-red-400 px-4 py-3 rounded text-white font-bold uppercase mr-2">Iniciar sesion</a>
+                    <a className="px-4 py-3 mt-8 mr-2 text-sm font-bold text-center text-white uppercase transition-all duration-150 ease-linear bg-red-500 rounded outline-none hover:bg-red-600 hover:text-gray-200 active:bg-red-500 focus:outline-none">Loguearme</a>
                 </Link>
                 <Link href="/crearcuenta">
-                    <a className="text-sm text-gray-900 bg-transparent border border-solid border-gray-800 hover:bg-gray-800 hover:text-white active:bg-gray-900 font-bold uppercase px-4 py-3 rounded outline-none focus:outline-none  ease-linear transition-all duration-150" >
+                    <a className="px-4 py-3 text-sm font-bold text-gray-900 uppercase transition-all duration-150 ease-linear bg-transparent border border-gray-800 border-solid rounded outline-none hover:bg-gray-800 hover:text-white active:bg-gray-900 focus:outline-none" >
                         Crear cuenta
                     </a>
                 </Link>

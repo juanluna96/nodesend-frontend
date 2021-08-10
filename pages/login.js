@@ -51,7 +51,7 @@ const Login = () => {
                                     }
                                 </ErrorMessage>
 
-                                <button type="submit" className="block w-full px-4 py-3 mt-8 text-sm font-bold text-center text-white uppercase transition-all duration-150 ease-linear bg-red-500 rounded outline-none hover:bg-red-600 hover:text-gray-200 active:bg-red-500 focus:outline-none">Submit</button>
+                                <button type="submit" className="block w-full px-4 py-3 mt-8 text-sm font-bold text-center text-white uppercase transition-all duration-150 ease-linear bg-red-500 rounded outline-none hover:bg-red-600 hover:text-gray-200 active:bg-red-500 focus:outline-none">Loguearme</button>
                             </Form>
                         </Formik>
                     </div>
