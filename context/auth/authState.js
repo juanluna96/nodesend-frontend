@@ -16,12 +16,9 @@ const AuthState = ({ children }) => {
     // Definir el reducer
     const [state, dispatch] = useReducer(authReducer, initialState);
 
-    // Usuario autenticado
-    const usuarioAutenticado = nombre => {
-        dispatch({
-            type: USUARIO_AUTENTICADO,
-            payload: nombre
-        })
+    // Registrar usuario
+    const registrarUsuario = datos => {
+        console.log(`datos`, datos);
     }
 
     return (
@@ -30,7 +27,7 @@ const AuthState = ({ children }) => {
             autenticado: state.autenticado,
             usuario: state.usuario,
             mensaje: state.mensaje,
-            usuarioAutenticado
+            registrarUsuario
         } }>
             { children }
         </authContext.Provider>
