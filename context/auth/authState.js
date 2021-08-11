@@ -6,7 +6,9 @@ import {
     USUARIO_AUTENTICADO,
     REGISTRO_EXITOSO,
     REGISTRO_FALLIDO,
-    LIMPIAR_ALERTA
+    LIMPIAR_ALERTA,
+    LOGIN_EXITOSO,
+    LOGIN_FALLIDO
 } from '../../types';
 import clienteAxios from '../../config/axios';
 
@@ -38,17 +40,36 @@ const AuthState = ({ children }) => {
             })
         }
 
+        limpiarAlerta();
+    }
+
+    // Autenticar usuarios
+    const iniciarSesion = async datos => {
+        try {
+            const respuesta = await clienteAxios.post('auth', datos);
+            console.log();
+            dispatch({
+                type: LOGIN_EXITOSO,
+                payload: respuesta.data.token
+            })
+        } catch (error) {
+            dispatch({
+                type: LOGIN_FALLIDO,
+                payload: error.response.data.message
+            })
+        }
+
+        limpiarAlerta();
+    }
+
+    // Limpiar la alerta con el mensaje
+    const limpiarAlerta = () => {
         // Limpiar la alerta luego de 3 segundos
         setTimeout(() => {
             dispatch({
                 type: LIMPIAR_ALERTA
             })
         }, 3000)
-    }
-
-    // Autenticar usuarios
-    const iniciarSesion = async datos => {
-        console.log('datos', datos);
     }
 
     return (
