@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Layout from '../components/Layout';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import authContext from '../context/auth/authContext';
 
 const Login = () => {
+    const { iniciarSesion } = useContext(authContext);
+
     // Formulario y validacion con Formik y Yup simplificado
     const formikOptions = {
         initialValues: {
@@ -15,7 +18,7 @@ const Login = () => {
             password: Yup.string().min(6, 'La contraseña debe contener al menos 6 caracteres').required('La contraseña es obligatoria'),
         }),
         onSubmit: valores => {
-            console.log(valores);
+            iniciarSesion(valores);
         }
     };
 

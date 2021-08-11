@@ -46,13 +46,19 @@ const AuthState = ({ children }) => {
         }, 3000)
     }
 
+    // Autenticar usuarios
+    const iniciarSesion = async datos => {
+        console.log('datos', datos);
+    }
+
     return (
         <authContext.Provider value={ {
             token: state.token,
             autenticado: state.autenticado,
             usuario: state.usuario,
             mensaje: state.mensaje,
-            registrarUsuario
+            registrarUsuario,
+            iniciarSesion
         } }>
             { children }
         </authContext.Provider>
