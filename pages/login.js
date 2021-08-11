@@ -4,9 +4,19 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import authContext from '../context/auth/authContext';
 import Alerta from '../components/Alerta';
+import { useRouter } from 'next/dist/client/router';
 
 const Login = () => {
-    const { iniciarSesion, mensaje } = useContext(authContext);
+    const { iniciarSesion, autenticado, mensaje } = useContext(authContext);
+
+    // Next - router
+    const router = useRouter();
+
+    useEffect(() => {
+        if (autenticado) {
+            router.push('/');
+        }
+    }, [autenticado])
 
     // Formulario y validacion con Formik y Yup simplificado
     const formikOptions = {

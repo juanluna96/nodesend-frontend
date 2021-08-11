@@ -15,10 +15,11 @@ import clienteAxios from '../../config/axios';
 const AuthState = ({ children }) => {
     // Definir un state inicial
     const initialState = {
-        token: '',
+        token: typeof window !== 'undefined' ? localStorage.getItem('token') : '',
         autenticado: null,
         usuario: null,
-        mensaje: null
+        mensaje: null,
+        cargando: null
     }
 
     // Definir el reducer

@@ -3,7 +3,8 @@ import {
     REGISTRO_EXITOSO,
     REGISTRO_FALLIDO,
     LIMPIAR_ALERTA,
-    LOGIN_FALLIDO
+    LOGIN_FALLIDO,
+    LOGIN_EXITOSO
 } from '../../types';
 
 export const authReducer = (state, { payload, type }) => {
@@ -12,6 +13,9 @@ export const authReducer = (state, { payload, type }) => {
         case REGISTRO_FALLIDO:
         case LOGIN_FALLIDO:
             return { ...state, mensaje: payload }
+        case LOGIN_EXITOSO:
+            localStorage.setItem('token', payload);
+            return { ...state, token: payload, autenticado: true }
         case LIMPIAR_ALERTA:
             return { ...state, mensaje: null }
         case USUARIO_AUTENTICADO:
