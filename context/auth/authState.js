@@ -2,7 +2,12 @@ import React, { useReducer } from 'react'
 import authContext from './authContext';
 import { authReducer } from './authReducer';
 
-import { USUARIO_AUTENTICADO, REGISTRO_EXITOSO } from '../../types';
+import {
+    USUARIO_AUTENTICADO,
+    REGISTRO_EXITOSO,
+    REGISTRO_FALLIDO,
+    LIMPIAR_ALERTA
+} from '../../types';
 import clienteAxios from '../../config/axios';
 
 const AuthState = ({ children }) => {
@@ -26,8 +31,19 @@ const AuthState = ({ children }) => {
                 payload: respuesta.data.msg
             })
         } catch (error) {
-            console.log(error);
+            console.log(error.response)
+            dispatch({
+                type: REGISTRO_FALLIDO,
+                payload: error.response.data.message
+            })
         }
+
+        // Limpiar la alerta luego de 3 segundos
+        setTimeout(() => {
+            dispatch({
+                type: LIMPIAR_ALERTA
+            })
+        }, 3000)
     }
 
     return (
