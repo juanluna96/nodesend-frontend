@@ -4,7 +4,7 @@ import authContext from '../context/auth/authContext';
 
 const Home = () => {
   // Extraer el usuario autenticado del storage
-  const { usuarioAutenticado } = useContext(authContext);
+  const { usuarioAutenticado, usuario } = useContext(authContext);
 
   useEffect(() => {
     usuarioAutenticado();

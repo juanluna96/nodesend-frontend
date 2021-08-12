@@ -16,10 +16,10 @@ export const authReducer = (state, { payload, type }) => {
         case LOGIN_EXITOSO:
             localStorage.setItem('token', payload);
             return { ...state, token: payload, autenticado: true }
-        case LIMPIAR_ALERTA:
-            return { ...state, mensaje: null }
         case USUARIO_AUTENTICADO:
             return { ...state, usuario: payload }
+        case LIMPIAR_ALERTA:
+            return { ...state, mensaje: null }
         default:
             return state
     }

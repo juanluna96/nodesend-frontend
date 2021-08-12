@@ -11,6 +11,7 @@ import {
     LOGIN_FALLIDO
 } from '../../types';
 import clienteAxios from '../../config/axios';
+import tokenAuth from '../../config/token';
 
 const AuthState = ({ children }) => {
     // Definir un state inicial
@@ -34,7 +35,6 @@ const AuthState = ({ children }) => {
                 payload: respuesta.data.msg
             })
         } catch (error) {
-            console.log(error.response)
             dispatch({
                 type: REGISTRO_FALLIDO,
                 payload: error.response.data.message
@@ -48,7 +48,6 @@ const AuthState = ({ children }) => {
     const iniciarSesion = async datos => {
         try {
             const respuesta = await clienteAxios.post('auth', datos);
-            console.log();
             dispatch({
                 type: LOGIN_EXITOSO,
                 payload: respuesta.data.token
@@ -65,7 +64,20 @@ const AuthState = ({ children }) => {
 
     // Retorne el usuario autenticado en base al JWT
     const usuarioAutenticado = async () => {
-        console.log('revisando');
+        const token = localStorage.getItem('token');
+        if (token) {
+            tokenAuth(token)
+        }
+
+        try {
+            const respuesta = await clienteAxios.get('auth');
+            dispatch({
+                type: USUARIO_AUTENTICADO,
+                payload: respuesta.data.usuario
+            })
+        } catch (error) {
+
+        }
     }
 
     // Limpiar la alerta con el mensaje
