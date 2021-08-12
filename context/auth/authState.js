@@ -63,6 +63,11 @@ const AuthState = ({ children }) => {
         limpiarAlerta();
     }
 
+    // Retorne el usuario autenticado en base al JWT
+    const usuarioAutenticado = async () => {
+        console.log('revisando');
+    }
+
     // Limpiar la alerta con el mensaje
     const limpiarAlerta = () => {
         // Limpiar la alerta luego de 3 segundos
@@ -79,8 +84,10 @@ const AuthState = ({ children }) => {
             autenticado: state.autenticado,
             usuario: state.usuario,
             mensaje: state.mensaje,
+            cargando: state.cargando,
             registrarUsuario,
-            iniciarSesion
+            iniciarSesion,
+            usuarioAutenticado
         } }>
             { children }
         </authContext.Provider>
