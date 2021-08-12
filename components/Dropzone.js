@@ -3,8 +3,12 @@ import { useDropzone } from 'react-dropzone'
 import clienteAxios from '../config/axios';
 
 const Dropzone = () => {
+    const onDrop = useCallback((acceptedFiles) => {
+        console.log(acceptedFiles);
+    })
+
     // Extraer contenido de dropzone
-    const { getRootProps, getInputProps, isDragActive } = useDropzone();
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
     return (
         <div className="flex flex-col items-center justify-center mx-2 mt-16 mb-3 bg-gray-100 border-2 border-gray-400 border-dashed rounded-lg md:flex-1 lg:mt-0">
             <div { ...getRootProps({ className: 'dropzone w-full py-32' }) }>
