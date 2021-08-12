@@ -4,7 +4,8 @@ import {
     REGISTRO_FALLIDO,
     LIMPIAR_ALERTA,
     LOGIN_FALLIDO,
-    LOGIN_EXITOSO
+    LOGIN_EXITOSO,
+    CERRAR_SESION
 } from '../../types';
 
 export const authReducer = (state, { payload, type }) => {
@@ -18,6 +19,9 @@ export const authReducer = (state, { payload, type }) => {
             return { ...state, token: payload, autenticado: true }
         case USUARIO_AUTENTICADO:
             return { ...state, usuario: payload }
+        case CERRAR_SESION:
+            localStorage.removeItem('token');
+            return { ...state, usuario: null, token: null, autenticado: null }
         case LIMPIAR_ALERTA:
             return { ...state, mensaje: null }
         default:

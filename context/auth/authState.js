@@ -8,7 +8,8 @@ import {
     REGISTRO_FALLIDO,
     LIMPIAR_ALERTA,
     LOGIN_EXITOSO,
-    LOGIN_FALLIDO
+    LOGIN_FALLIDO,
+    CERRAR_SESION
 } from '../../types';
 import clienteAxios from '../../config/axios';
 import tokenAuth from '../../config/token';
@@ -76,8 +77,15 @@ const AuthState = ({ children }) => {
                 payload: respuesta.data.usuario
             })
         } catch (error) {
-
+            console.log(error.response)
         }
+    }
+
+    // Cerrar sesion
+    const cerrarSesion = () => {
+        dispatch({
+            type: CERRAR_SESION
+        })
     }
 
     // Limpiar la alerta con el mensaje
@@ -99,7 +107,8 @@ const AuthState = ({ children }) => {
             cargando: state.cargando,
             registrarUsuario,
             iniciarSesion,
-            usuarioAutenticado
+            usuarioAutenticado,
+            cerrarSesion
         } }>
             { children }
         </authContext.Provider>
