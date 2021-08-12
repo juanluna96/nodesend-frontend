@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import Layout from '../components/Layout';
 import authContext from '../context/auth/authContext';
 import Link from 'next/link';
+import Dropzone from '../components/Dropzone';
 
 const Home = () => {
   // Extraer el usuario autenticado del storage
@@ -15,7 +16,7 @@ const Home = () => {
     <Layout>
       <div className="mx-auto mb-32 md:w-4/5 xl:w-3/5">
         <div className="p-5 py-10 bg-white rounded-lg lg:flex md:shadow-lg">
-          <p>Dropzone aquí</p>
+          <Dropzone />
           <div className="mx-2 mt-16 mb-3 md:flex-1 lg:mt-0">
             <h2 className="my-4 font-sans text-4xl font-bold text-gray-800">Compartir archivos de forma sencilla y rápida.</h2>
             <p className="text-lg leading-loose">
