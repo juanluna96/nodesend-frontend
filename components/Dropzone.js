@@ -12,12 +12,23 @@ const Dropzone = () => {
 
         const resultado = await clienteAxios.post('archivos', formData);
         console.log(resultado.data);
-    }, [])
+    }, []);
 
     // Extraer contenido de dropzone
-    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+    const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({ onDrop });
+
+    const archivos = acceptedFiles.map((archivo, key) => (
+        <li key={ archivo.lastModified } className="flex-1 p-3 mb-4 bg-white rounded shadow-lg">
+            <p className="text-xl font-bold">{ archivo.path }</p>
+            <p className="text-sm text-gray-500">{ archivo.size / Math.pow(1024, 2).toFixed() } MB</p>
+        </li>
+    ))
+
     return (
         <div className="flex flex-col items-center justify-center mx-2 mt-16 mb-3 bg-gray-100 border-2 border-gray-400 border-dashed rounded-lg md:flex-1 lg:mt-0">
+            <ul>
+                { archivos }
+            </ul>
             <div { ...getRootProps({ className: 'dropzone w-full py-32' }) }>
                 <input className="h-100" { ...getInputProps() } />
                 {
