@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
                 <link rel="icon" href="/favicon.ico" />
                 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
             </Head>
-            <div className="bg-gray-100 min-h-screen">
+            <div className="min-h-screen bg-gray-100">
                 <div className="container mx-auto">
                     <Header />
                     <div className="mt-20">
