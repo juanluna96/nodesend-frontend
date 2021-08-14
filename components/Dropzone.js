@@ -9,7 +9,7 @@ const Dropzone = () => {
     const [Error, setError] = useState({ file: false, delete: false });
     const [archivos, setArchivos] = useState([]);
 
-    const onDrop = useCallback(async (acceptedFiles) => {
+    const onDropAccepted = useCallback(async (acceptedFiles) => {
         const [archivo] = acceptedFiles;
 
         // Crear un form data
@@ -17,20 +17,22 @@ const Dropzone = () => {
         formData.append('archivo', archivo);
 
         setLoading(true);
-        try {
-            const resultado = await clienteAxios.post('archivos', formData);
-            archivo.nombre = resultado.data.archivo;
+        const resultado = await clienteAxios.post('archivos', formData);
+        archivo.nombre = resultado.data.archivo;
 
-            // Actualizando el state
-            setArchivos([archivo]);
-            setError({ ...Error, file: false })
-        } catch (error) {
-            console.log(error.response);
-            setError({ ...Error, file: true })
-        }
+        // Actualizando el state
+        setArchivos([archivo]);
+        setError({ ...Error, file: false })
 
         setLoading(false);
     }, []);
+
+    const onDropRejected = () => {
+        setError({ ...Error, file: true });
+        setTimeout(() => {
+            setError({ ...Error, file: false });
+        }, 2000)
+    };
 
     const deleteFile = async (archivo) => {
         try {
@@ -49,7 +51,7 @@ const Dropzone = () => {
     }
 
     // Extraer contenido de dropzone
-    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDropAccepted, onDropRejected, maxSize: 1000000 });
 
     const listaArchivos = archivos.map((archivo, index) => (
         <li key={ archivo.lastModified }>
