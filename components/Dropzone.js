@@ -1,10 +1,13 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import clienteAxios from '../config/axios';
 import { TiTimes } from 'react-icons/ti';
 import Loading from './Loading';
+import appContext from '../context/app/appContext';
 
 const Dropzone = () => {
+    const { mostrarAlerta } = useContext(appContext);
+
     const [loading, setLoading] = useState(false);
     const [Error, setError] = useState({ file: false, delete: false });
     const [archivos, setArchivos] = useState([]);
@@ -29,6 +32,7 @@ const Dropzone = () => {
 
     const onDropRejected = () => {
         setError({ ...Error, file: true });
+        mostrarAlerta('El archivo es muy pesado');
         setTimeout(() => {
             setError({ ...Error, file: false });
         }, 2000)
