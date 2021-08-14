@@ -6,10 +6,10 @@ import Loading from './Loading';
 import appContext from '../context/app/appContext';
 
 const Dropzone = () => {
-    const { mostrarAlerta } = useContext(appContext);
+    const { mostrarAlerta, mensaje_archivo } = useContext(appContext);
 
     const [loading, setLoading] = useState(false);
-    const [Error, setError] = useState({ file: false, delete: false });
+    const [Error, setError] = useState({ delete: false });
     const [archivos, setArchivos] = useState([]);
 
     const onDropAccepted = useCallback(async (acceptedFiles) => {
@@ -31,11 +31,7 @@ const Dropzone = () => {
     }, []);
 
     const onDropRejected = () => {
-        setError({ ...Error, file: true });
-        mostrarAlerta('El archivo es muy pesado');
-        setTimeout(() => {
-            setError({ ...Error, file: false });
-        }, 2000)
+        mostrarAlerta('El archivo que intentas subir es superior a 1MB, intenta crear una cuenta par aumentar el limite.');
     };
 
     const deleteFile = async (archivo) => {
@@ -57,7 +53,7 @@ const Dropzone = () => {
     // Extraer contenido de dropzone
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDropAccepted, onDropRejected, maxSize: 1000000 });
 
-    const listaArchivos = archivos.map((archivo, index) => (
+    const listaArchivos = archivos.map((archivo) => (
         <li key={ archivo.lastModified }>
             <div className="float-right">
                 <button onClick={ () => deleteFile(archivo) } className="p-1 -mt-2 -mr-2 text-lg font-bold text-center text-white uppercase transition-all duration-150 ease-linear bg-red-500 rounded rounded-full outline-none hover:bg-red-600 hover:text-gray-200 active:bg-red-500 focus:outline-none"><TiTimes /></button>
@@ -93,7 +89,7 @@ const Dropzone = () => {
                                     :
                                     isDragActive ? <p className="text-2xl text-center text-gray-600">Suelta el archivo</p> : (
                                         <div className="text-center">
-                                            { Error.file && <p className="text-xl italic text-center text-red-500">El archivo es muy grande</p> }
+                                            { mensaje_archivo && <p className="text-xl italic text-center text-red-500">El archivo es muy pesado.</p> }
                                             <p className="text-2xl text-center text-gray-600">Seleccione un archivo y arrastralo aqui</p>
                                             <button className="px-4 py-3 my-10 mr-2 text-sm font-bold text-center text-white uppercase transition-all duration-150 ease-linear bg-red-500 rounded outline-none hover:bg-red-600 hover:text-gray-200 active:bg-red-500 focus:outline-none">Subir archivo</button>
                                         </div>

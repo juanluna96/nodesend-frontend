@@ -3,10 +3,13 @@ import Layout from '../components/Layout';
 import authContext from '../context/auth/authContext';
 import Link from 'next/link';
 import Dropzone from '../components/Dropzone';
+import Alerta from '../components/Alerta';
+import appContext from '../context/app/appContext';
 
 const Home = () => {
   // Extraer el usuario autenticado del storage
   const { usuarioAutenticado, usuario } = useContext(authContext);
+  const { mensaje_archivo } = useContext(appContext);
 
   useEffect(() => {
     usuarioAutenticado();
@@ -15,6 +18,7 @@ const Home = () => {
   return (
     <Layout>
       <div className="mx-auto mb-32 md:w-4/5 xl:w-3/5">
+        { mensaje_archivo && <Alerta /> }
         <div className="p-5 py-10 bg-white rounded-lg lg:flex md:shadow-lg">
           <Dropzone />
           <div className="mx-2 mt-16 mb-3 md:flex-1 lg:mt-0">

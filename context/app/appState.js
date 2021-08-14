@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react'
 import appContext from './appContext';
 import appReducer from './appReducer';
-import { MOSTRAR_ALERTA } from '../../types';
+import { MOSTRAR_ALERTA, LIMPIAR_ALERTA } from '../../types';
 
 const AppState = ({ children }) => {
     const initialState = {
@@ -14,6 +14,12 @@ const AppState = ({ children }) => {
             type: MOSTRAR_ALERTA,
             payload: msg
         })
+
+        setTimeout(() => {
+            dispatch({
+                type: LIMPIAR_ALERTA,
+            })
+        }, 3000)
     }
 
     const [state, dispatch] = useReducer(appReducer, initialState);
