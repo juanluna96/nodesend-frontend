@@ -8,7 +8,8 @@ import {
     SUBIR_ARCHIVO_FALLIDO,
     BORRAR_ARCHIVO_EXITOSO,
     BORRAR_ARCHIVO_FALLIDO,
-    CARGANDO_CONTENIDO
+    CARGANDO_CONTENIDO,
+    SUBIR_ENLACE_EXITOSO
 } from '../../types';
 import clienteAxios from '../../config/axios';
 
@@ -17,9 +18,19 @@ const AppState = ({ children }) => {
         mensaje_archivo: '',
         nombre: '',
         nombre_original: '',
+        descargas: 1,
+        password: '',
+        autor: null,
+        url: '',
         error_eliminar: false,
         loading: false
     }
+
+    const [state, dispatch] = useReducer(appReducer, initialState);
+
+    /* -------------------------------------------------------------------------- */
+    /*                            Funciones de archivos                           */
+    /* -------------------------------------------------------------------------- */
 
     // Muestra una alerta
     const mostrarAlerta = msg => {
@@ -85,17 +96,49 @@ const AppState = ({ children }) => {
         }, 3000)
     }
 
-    const [state, dispatch] = useReducer(appReducer, initialState);
+    /* -------------------------------------------------------------------------- */
+    /*                            Funciones de enlaces                            */
+    /* -------------------------------------------------------------------------- */
+
+    // Crea un enlace una vez que se subio el archivo
+    const crearEnlace = async () => {
+        const data = obtenerDataEnlace();
+
+        try {
+            const resultado = await clienteAxios.post('enlaces', data);
+            dispatch({
+                type: SUBIR_ENLACE_EXITOSO,
+                payload: resultado.data.message
+            });
+        } catch (error) {
+            console.log(error.response);
+        }
+    }
+
+    const obtenerDataEnlace = () => {
+        return {
+            nombre: state.nombre,
+            nombre_original: state.nombre_original,
+            descargas: state.descargas,
+            password: state.password,
+            autor: state.autor
+        }
+    }
 
     return (
         <appContext.Provider value={ {
             mensaje_archivo: state.mensaje_archivo,
             nombre: state.nombre,
             nombre_original: state.nombre_original,
+            descargas: state.descargas,
+            password: state.password,
+            autor: state.autor,
+            url: state.url,
             loading: state.loading,
             mostrarAlerta,
             subirArchivo,
-            borrarArchivo
+            borrarArchivo,
+            crearEnlace
         } }>
             { children }
         </appContext.Provider>

@@ -5,7 +5,7 @@ import Loading from './Loading';
 import appContext from '../context/app/appContext';
 
 const Dropzone = () => {
-    const { nombre, mensaje_archivo, error_eliminar, loading, mostrarAlerta, subirArchivo, borrarArchivo, nombre_original } = useContext(appContext);
+    const { nombre, nombre_original, mensaje_archivo, error_eliminar, loading, mostrarAlerta, subirArchivo, borrarArchivo, crearEnlace } = useContext(appContext);
 
     const [archivos, setArchivos] = useState([]);
 
@@ -35,10 +35,6 @@ const Dropzone = () => {
         // Funcion de eliminar archivo
         borrarArchivo(nombre);
     };
-
-    const crearEnlace = () => {
-        console.log('Crear enlace');
-    }
 
     // Extraer contenido de dropzone
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDropAccepted, onDropRejected, maxSize: 1000000 });
