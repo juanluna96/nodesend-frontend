@@ -1,15 +1,12 @@
 import React, { useCallback, useContext, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-import clienteAxios from '../config/axios';
 import { TiTimes } from 'react-icons/ti';
 import Loading from './Loading';
 import appContext from '../context/app/appContext';
 
 const Dropzone = () => {
-    const { mostrarAlerta, mensaje_archivo } = useContext(appContext);
+    const { nombre, mensaje_archivo, error_eliminar, loading, mostrarAlerta, subirArchivo, borrarArchivo, nombre_original } = useContext(appContext);
 
-    const [loading, setLoading] = useState(false);
-    const [Error, setError] = useState({ delete: false });
     const [archivos, setArchivos] = useState([]);
 
     const onDropAccepted = useCallback(async (acceptedFiles) => {
@@ -19,31 +16,24 @@ const Dropzone = () => {
         const formData = new FormData();
         formData.append('archivo', archivo);
 
-        setLoading(true);
-        const resultado = await clienteAxios.post('archivos', formData);
-        archivo.nombre = resultado.data.archivo;
+        subirArchivo(formData, archivo.path);
 
         // Actualizando el state
         setArchivos([archivo]);
-        setError({ ...Error, file: false })
-
-        setLoading(false);
     }, []);
 
     const onDropRejected = () => {
         mostrarAlerta('El archivo que intentas subir es superior a 1MB, intenta crear una cuenta par aumentar el limite.');
     };
 
-    const deleteFile = async (archivo) => {
-        try {
-            const nuevosArchivos = [...archivos]
-            nuevosArchivos.splice(nuevosArchivos.indexOf(archivo), 1)
-            setArchivos(nuevosArchivos);
-            await clienteAxios.delete(`archivos/${archivo.nombre}`, { data: { archivo: archivo.nombre } });
-        } catch (error) {
-            console.log(error.response);
-            setError({ ...Error, delete: archivo.nombre });
-        }
+    const deleteFile = (archivo) => {
+        // Eliminar archivo de la lista de archivos
+        const nuevosArchivos = [...archivos]
+        nuevosArchivos.splice(nuevosArchivos.indexOf(archivo), 1)
+        setArchivos(nuevosArchivos);
+
+        // Funcion de eliminar archivo
+        borrarArchivo(nombre);
     };
 
     const crearEnlace = () => {
@@ -75,7 +65,7 @@ const Dropzone = () => {
                             <ul>
                                 { listaArchivos }
                             </ul>
-                            { Error.delete && <p className="text-2xl text-center text-red-500">No se pudo eliminar el archivo { Error.delete }</p> }
+                            { error_eliminar && <p className="text-2xl text-center text-red-500">No se pudo eliminar el archivo { nombre_original }</p> }
                             <button className="w-full px-4 py-3 my-5 text-sm font-bold text-center text-white uppercase transition-all duration-150 ease-linear bg-red-500 rounded outline-none hover:bg-red-600 hover:text-gray-200 active:bg-red-500 focus:outline-none" onClick={ crearEnlace }>Crear enlace</button>
                         </div>
                     )

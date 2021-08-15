@@ -15,8 +15,12 @@ export const LIMPIAR_ALERTA = 'LIMPIAR_ALERTA'
 /* -------------------------------- Archivos -------------------------------- */
 export const SUBIR_ARCHIVO_EXITOSO = 'SUBIR_ARCHIVO_EXITOSO'
 export const SUBIR_ARCHIVO_FALLIDO = 'SUBIR_ARCHIVO_FALLIDO'
+export const BORRAR_ARCHIVO_EXITOSO = 'BORRAR_ARCHIVO_EXITOSO'
+export const BORRAR_ARCHIVO_FALLIDO = 'BORRAR_ARCHIVO_FALLIDO'
 
 /* --------------------------------- Enlaces -------------------------------- */
 export const SUBIR_ENLACE_EXITOSO = 'SUBIR_ENLACE_EXITOSO'
 export const SUBIR_ENLACE_FALLIDO = 'SUBIR_ENLACE_FALLIDO'
 
+/* --------------------------- Cargando (Loading) --------------------------- */
+export const CARGANDO_CONTENIDO = 'CARGANDO_CONTENIDO'
