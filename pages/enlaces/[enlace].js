@@ -6,6 +6,7 @@ import { AiOutlineDownload } from 'react-icons/ai';
 import Layout from '../../components/Layout';
 import clienteAxios from '../../config/axios';
 import appContext from '../../context/app/appContext';
+import Alerta from '../../components/Alerta';
 
 export const getServerSideProps = async (props) => {
     const { params: { enlace } } = props;
@@ -30,7 +31,7 @@ export async function getServerSidePaths() {
 
 const Enlace = ({ enlace }) => {
     const [tienePassword, setTienePassword] = useState(enlace.password);
-    const { verificarPassword } = useContext(appContext);
+    const { verificarPassword, mensaje_archivo } = useContext(appContext);
 
     // Formulario y validacion con Formik y Yup simplificado
     const formikOptions = {
@@ -41,7 +42,7 @@ const Enlace = ({ enlace }) => {
             password: Yup.string().required('La contraseña es obligatoria'),
         }),
         onSubmit: valores => {
-            verificarPassword(valores.password);
+            verificarPassword(valores.password, enlace.enlace, setTienePassword);
         }
     };
 
@@ -52,6 +53,7 @@ const Enlace = ({ enlace }) => {
                     ? (
                         <>
                             <p className="text-center">Este enlace esta protegido con contraseña, para descargar el documento colocala acontinuacion.</p>
+                            { mensaje_archivo && <Alerta /> }
                             <Formik { ...formikOptions } >
                                 <Form className="max-w-2xl px-6 py-6 mx-auto mb-4">
                                     <div className="mb-4">

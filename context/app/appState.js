@@ -146,10 +146,14 @@ const AppState = ({ children }) => {
     }
 
     // Verificar contraseña del enlace sea igual al formulario
-    const verificarPassword = (password) => {
-        console.log(password);
+    const verificarPassword = async (password, enlace, setTienePassword) => {
+        try {
+            const resultado = await clienteAxios.post(`enlaces/${enlace}`, { password });
+            setTienePassword(resultado.data.password);
+        } catch (error) {
+            mostrarAlerta(error.response.data.message);
+        }
     }
-
 
     /* -------------------------------------------------------------------------- */
     /*                             Funciones del state                            */
