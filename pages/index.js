@@ -17,7 +17,11 @@ const Home = () => {
   const enlace = process.env.frontendURL + 'enlaces/' + url;
 
   useEffect(() => {
-    usuarioAutenticado();
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      usuarioAutenticado();
+    }
   }, []);
 
   const copiarEnlace = () => {

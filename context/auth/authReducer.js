@@ -18,7 +18,7 @@ export const authReducer = (state, { payload, type }) => {
             localStorage.setItem('token', payload);
             return { ...state, token: payload, autenticado: true }
         case USUARIO_AUTENTICADO:
-            return { ...state, usuario: payload }
+            return { ...state, usuario: payload, autenticado: true }
         case CERRAR_SESION:
             localStorage.removeItem('token');
             return { ...state, usuario: null, token: null, autenticado: null }
