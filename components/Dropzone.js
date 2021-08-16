@@ -4,6 +4,7 @@ import { TiTimes } from 'react-icons/ti';
 import Loading from './Loading';
 import appContext from '../context/app/appContext';
 import authContext from '../context/auth/authContext';
+import FormularioEnlace from './FormularioEnlace';
 
 const Dropzone = () => {
     const { nombre, nombre_original, mensaje_archivo, error_eliminar, loading, mostrarAlerta, subirArchivo, borrarArchivo, crearEnlace } = useContext(appContext);
@@ -65,7 +66,7 @@ const Dropzone = () => {
                             </ul>
                             { error_eliminar && <p className="text-2xl text-center text-red-500">No se pudo eliminar el archivo { nombre_original }</p> }
                             {
-                                autenticado && 'Esto se ve si esta autenticado'
+                                autenticado && <FormularioEnlace />
                             }
                             <button className="w-full px-4 py-3 my-5 text-sm font-bold text-center text-white uppercase transition-all duration-150 ease-linear bg-red-500 rounded outline-none hover:bg-red-600 hover:text-gray-200 active:bg-red-500 focus:outline-none" onClick={ crearEnlace }>Crear enlace</button>
                         </div>
