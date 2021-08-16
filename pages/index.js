@@ -30,13 +30,15 @@ const Home = () => {
 
   return (
     <Layout>
-      <div className="mx-auto mb-32 md:w-4/5 xl:w-3/5">
+      <div className="px-3 mx-auto mb-32 md:w-4/5 xl:w-3/5">
         {
           url
             ? (
               <>
                 <p className="px-3 text-2xl text-center md:text-4xl">El enlace para compartir el archivo es:</p>
-                <a href={ enlace } target="_blank" rel="noreferrer" className="block px-3 my-4 text-2xl italic text-center text-red-500 md:text-4xl">{ enlace }</a>
+                <Link href={ enlace }>
+                  <a target="_blank" className="block px-3 my-4 text-2xl italic text-center text-red-500 md:text-4xl">{ enlace }</a>
+                </Link>
                 <button
                   onClick={ () => copiarEnlace() }
                   className="flex items-center justify-center w-full px-4 py-3 my-5 text-sm font-bold text-center text-white uppercase transition-all duration-150 ease-linear bg-red-500 rounded outline-none hover:bg-red-600 hover:text-gray-200 active:bg-red-500 focus:outline-none"
