@@ -7,7 +7,8 @@ import {
     CARGANDO_CONTENIDO,
     SUBIR_ENLACE_EXITOSO,
     LIMPIAR_STATE,
-    AGREGAR_PASSWORD
+    AGREGAR_PASSWORD,
+    AGREGAR_NUMERO_DESCARGAS
 } from '../../types';
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -19,6 +20,8 @@ export default (state, { type, payload }) => {
             return { ...state, nombre: '', nombre_original: '' };
         case AGREGAR_PASSWORD:
             return { ...state, password: payload };
+        case AGREGAR_NUMERO_DESCARGAS:
+            return { ...state, descargas: payload };
         case SUBIR_ENLACE_EXITOSO:
             return { ...state, url: payload };
         case SUBIR_ARCHIVO_FALLIDO:

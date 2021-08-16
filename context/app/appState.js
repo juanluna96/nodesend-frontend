@@ -11,7 +11,8 @@ import {
     CARGANDO_CONTENIDO,
     SUBIR_ENLACE_EXITOSO,
     LIMPIAR_STATE,
-    AGREGAR_PASSWORD
+    AGREGAR_PASSWORD,
+    AGREGAR_NUMERO_DESCARGAS
 } from '../../types';
 import clienteAxios from '../../config/axios';
 
@@ -135,6 +136,14 @@ const AppState = ({ children }) => {
         });
     }
 
+    // Agrega el numero de descargas
+    const agregarDescargas = (descargas) => {
+        dispatch({
+            type: AGREGAR_NUMERO_DESCARGAS,
+            payload: descargas
+        });
+    }
+
 
     /* -------------------------------------------------------------------------- */
     /*                             Funciones del state                            */
@@ -160,6 +169,7 @@ const AppState = ({ children }) => {
             subirArchivo,
             borrarArchivo,
             agregarPassword,
+            agregarDescargas,
             crearEnlace,
             limpiarState
         } }>

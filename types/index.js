@@ -22,6 +22,7 @@ export const BORRAR_ARCHIVO_FALLIDO = 'BORRAR_ARCHIVO_FALLIDO'
 export const SUBIR_ENLACE_EXITOSO = 'SUBIR_ENLACE_EXITOSO'
 export const SUBIR_ENLACE_FALLIDO = 'SUBIR_ENLACE_FALLIDO'
 export const AGREGAR_PASSWORD = 'AGREGAR_PASSWORD'
+export const AGREGAR_NUMERO_DESCARGAS = 'AGREGAR_NUMERO_DESCARGAS'
 
 /* --------------------------- Cargando (Loading) --------------------------- */
 export const CARGANDO_CONTENIDO = 'CARGANDO_CONTENIDO'
