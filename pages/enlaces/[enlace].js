@@ -2,19 +2,18 @@ import React from 'react'
 import Layout from '../../components/Layout';
 import clienteAxios from '../../config/axios';
 
-export const getStaticProps = async (ctx) => {
-    const resultado = await clienteAxios.get('enlaces/tQ-EDo9Ql');
-
-    console.log(resultado);
+export const getServerSideProps = async (props) => {
+    const { params: { enlace } } = props;
+    const resultado = await clienteAxios.get(`enlaces/${enlace}`);
 
     return {
         props: {
-            enlace:resultado.data
+            enlace: resultado.data
         }
     }
 }
 
-export async function getStaticPaths() {
+export async function getServerSidePaths() {
     const enlaces = await clienteAxios.get('enlaces');
     return {
         paths: enlaces.data.enlaces.map((enlace) => (
@@ -24,7 +23,7 @@ export async function getStaticPaths() {
     };
 }
 
-const Enlace = ({enlace}) => {
+const Enlace = ({ enlace }) => {
     console.log(enlace);
     return (
         <Layout>
