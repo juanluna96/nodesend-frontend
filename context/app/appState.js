@@ -9,7 +9,8 @@ import {
     BORRAR_ARCHIVO_EXITOSO,
     BORRAR_ARCHIVO_FALLIDO,
     CARGANDO_CONTENIDO,
-    SUBIR_ENLACE_EXITOSO
+    SUBIR_ENLACE_EXITOSO,
+    LIMPIAR_STATE
 } from '../../types';
 import clienteAxios from '../../config/axios';
 
@@ -125,6 +126,17 @@ const AppState = ({ children }) => {
         }
     }
 
+
+    /* -------------------------------------------------------------------------- */
+    /*                             Funciones del state                            */
+    /* -------------------------------------------------------------------------- */
+
+    const limpiarState = () => {
+        dispatch({
+            type: LIMPIAR_STATE
+        });
+    }
+
     return (
         <appContext.Provider value={ {
             mensaje_archivo: state.mensaje_archivo,
@@ -138,7 +150,8 @@ const AppState = ({ children }) => {
             mostrarAlerta,
             subirArchivo,
             borrarArchivo,
-            crearEnlace
+            crearEnlace,
+            limpiarState
         } }>
             { children }
         </appContext.Provider>

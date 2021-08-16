@@ -24,3 +24,5 @@ export const SUBIR_ENLACE_FALLIDO = 'SUBIR_ENLACE_FALLIDO'
 
 /* --------------------------- Cargando (Loading) --------------------------- */
 export const CARGANDO_CONTENIDO = 'CARGANDO_CONTENIDO'
+
+export const LIMPIAR_STATE = 'LIMPIAR_STATE'

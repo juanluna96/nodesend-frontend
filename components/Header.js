@@ -2,22 +2,35 @@ import React, { useContext } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import authContext from '../context/auth/authContext';
+import appContext from '../context/app/appContext';
+import { useRouter } from 'next/router'
 
 const Header = () => {
+    const router = useRouter();
+
     const { usuario, cerrarSesion } = useContext(authContext);
+
+    // Context de la aplicacion
+    const { limpiarState } = useContext(appContext);
 
     const imgSize = {
         width: 210,
         get height() { return this.width * 9 / 16 }
     }
 
+    const redireccionar = () => {
+        router.push('/');
+        limpiarState();
+    }
+
     return (
         <header className="flex flex-col items-center justify-between py-0 md:flex-row">
-            <Link href="/"  >
-                <a className="cursor-pointer">
+            {/* <Link href="/"  >
+                <a className="cursor-pointer" onClick={ () => { console.log('hola') } }>
                     <Image src="/logo.svg" width={ imgSize.width } height={ imgSize.height } alt="logo" />
                 </a>
-            </Link>
+            </Link> */}
+            <Image src="/logo.svg" className="cursor-pointer" onClick={ () => redireccionar() } width={ imgSize.width } height={ imgSize.height } alt="logo" />
             {
                 usuario
                     ? (

@@ -5,7 +5,8 @@ import {
     BORRAR_ARCHIVO_EXITOSO,
     SUBIR_ARCHIVO_FALLIDO,
     CARGANDO_CONTENIDO,
-    SUBIR_ENLACE_EXITOSO
+    SUBIR_ENLACE_EXITOSO,
+    LIMPIAR_STATE
 } from '../../types';
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -24,6 +25,19 @@ export default (state, { type, payload }) => {
             return { ...state, mensaje_archivo: '' };
         case CARGANDO_CONTENIDO:
             return { ...state, loading: payload };
+        case LIMPIAR_STATE:
+            return {
+                ...state,
+                mensaje_archivo: '',
+                nombre: '',
+                nombre_original: '',
+                descargas: 1,
+                password: '',
+                autor: null,
+                url: '',
+                error_eliminar: false,
+                loading: false
+            };
         default:
             return state
     }
