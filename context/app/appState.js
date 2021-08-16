@@ -106,6 +106,7 @@ const AppState = ({ children }) => {
     // Crea un enlace una vez que se subio el archivo
     const crearEnlace = async () => {
         const data = obtenerDataEnlace();
+        console.log(data);
 
         try {
             const resultado = await clienteAxios.post('enlaces', data);
@@ -144,6 +145,11 @@ const AppState = ({ children }) => {
         });
     }
 
+    // Verificar contraseña del enlace sea igual al formulario
+    const verificarPassword = (password) => {
+        console.log(password);
+    }
+
 
     /* -------------------------------------------------------------------------- */
     /*                             Funciones del state                            */
@@ -171,6 +177,7 @@ const AppState = ({ children }) => {
             agregarPassword,
             agregarDescargas,
             crearEnlace,
+            verificarPassword,
             limpiarState
         } }>
             { children }
