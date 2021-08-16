@@ -34,7 +34,7 @@ const Header = () => {
                     : (
                         <div className="flex flex-col items-center justify-between w-full px-3 py-0 md:flex-row md:max-w-sm">
                             <Link href="/login">
-                                <a className="w-full px-4 py-3 my-2 mr-2 text-sm font-bold text-center text-white uppercase transition-all duration-150 ease-linear bg-red-500 rounded outline-none hover:bg-red-600 hover:text-gray-200 active:bg-red-500 focus:outline-none">Loguearme</a>
+                                <a className="w-full px-4 py-3 my-2 text-sm font-bold text-center text-white uppercase transition-all duration-150 ease-linear bg-red-500 rounded outline-none md:mr-2 hover:bg-red-600 hover:text-gray-200 active:bg-red-500 focus:outline-none">Loguearme</a>
                             </Link>
                             <Link href="/crearcuenta">
                                 <a className="w-full px-4 py-3 my-2 text-sm font-bold text-center text-gray-900 uppercase transition-all duration-150 ease-linear bg-transparent border border-gray-800 border-solid rounded outline-none hover:bg-gray-800 hover:text-white active:bg-gray-900 focus:outline-none" >
