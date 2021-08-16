@@ -6,7 +6,8 @@ import {
     SUBIR_ARCHIVO_FALLIDO,
     CARGANDO_CONTENIDO,
     SUBIR_ENLACE_EXITOSO,
-    LIMPIAR_STATE
+    LIMPIAR_STATE,
+    AGREGAR_PASSWORD
 } from '../../types';
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -16,6 +17,8 @@ export default (state, { type, payload }) => {
             return { ...state, nombre: payload.nombre, nombre_original: payload.nombre_original };
         case BORRAR_ARCHIVO_EXITOSO:
             return { ...state, nombre: '', nombre_original: '' };
+        case AGREGAR_PASSWORD:
+            return { ...state, password: payload };
         case SUBIR_ENLACE_EXITOSO:
             return { ...state, url: payload };
         case SUBIR_ARCHIVO_FALLIDO:

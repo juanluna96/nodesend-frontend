@@ -10,7 +10,8 @@ import {
     BORRAR_ARCHIVO_FALLIDO,
     CARGANDO_CONTENIDO,
     SUBIR_ENLACE_EXITOSO,
-    LIMPIAR_STATE
+    LIMPIAR_STATE,
+    AGREGAR_PASSWORD
 } from '../../types';
 import clienteAxios from '../../config/axios';
 
@@ -126,6 +127,14 @@ const AppState = ({ children }) => {
         }
     }
 
+    // Agrega el password del enlace
+    const agregarPassword = (password) => {
+        dispatch({
+            type: AGREGAR_PASSWORD,
+            payload: password
+        });
+    }
+
 
     /* -------------------------------------------------------------------------- */
     /*                             Funciones del state                            */
@@ -150,6 +159,7 @@ const AppState = ({ children }) => {
             mostrarAlerta,
             subirArchivo,
             borrarArchivo,
+            agregarPassword,
             crearEnlace,
             limpiarState
         } }>

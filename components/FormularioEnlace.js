@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
+import appContext from '../context/app/appContext';
 
 const FormularioEnlace = () => {
     const [tienePassword, setTienePassword] = useState(false);
+    const { agregarPassword } = useContext(appContext);
 
     return (
         <div className="w-full mt-20">
@@ -25,7 +27,7 @@ const FormularioEnlace = () => {
                 </div>
                 {
                     tienePassword &&
-                    <input type="password" className="w-full h-12 px-3 py-2 leading-tight text-gray-700 border-2 border-red-500 rounded shadow appearance-none focus:outline-none focus:shadow-outline" id="nombre" placeholder="Contraseña..." />
+                    <input type="password" onChange={ (e) => agregarPassword(e.target.value) } className="w-full h-12 px-3 py-2 leading-tight text-gray-700 border-2 border-red-500 rounded shadow appearance-none focus:outline-none focus:shadow-outline" id="nombre" placeholder="Contraseña..." />
                 }
             </div>
         </div>
