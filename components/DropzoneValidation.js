@@ -30,8 +30,7 @@ const DropzoneValidation = () => {
                         { values.files &&
                             values.files.map((file, i) => (
                                 <li key={ i }>
-                                    { `File:${file.name} Type:${file.type} Size:${file.size
-                                        } bytes` }{ " " }
+                                    { `File ${file.name} Type ${file.type} Size ${file.size} bytes` }
                                 </li>
                             )) }
                         <ErrorMessage name="files" />
@@ -60,7 +59,7 @@ const UploadComponent = ({ setFieldValue }) => {
                 { isDragActive ? (
                     <p>Drop the files here ...</p>
                 ) : (
-                    <p>Drag 'n' drop some files here, or click to select files</p>
+                    <p>Drag &apos;n&apos; drop some files here, or click to select files</p>
                 ) }
             </div>
         </div>
